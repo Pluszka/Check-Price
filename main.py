@@ -20,9 +20,9 @@ website = response.text
 soup = BeautifulSoup(website, 'lxml')
 
 current_price = soup.find(name='span', class_='a-offscreen').getText()[1:]
-
-if float(current_price) >= MY_FUNDS:
-    connection = smtplib.SMTP('smtp.gmail.com')
+print(EMAIL, EMAIL_PASSWORD)
+if float(current_price) <= MY_FUNDS:
+    connection = smtplib.SMTP('smtp.gmail.com', port=587)
     connection.starttls()
     connection.login(user=EMAIL, password=EMAIL_PASSWORD)
     connection.sendmail(from_addr=EMAIL, to_addrs=EMAIL,

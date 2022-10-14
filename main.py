@@ -7,7 +7,7 @@ import os
 EMAIL = os.environ.get('EMAIL_LOGIN')
 EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 MY_FUNDS = 36.00
-AMAZON_URL = 'https://www.amazon.com/Magic-Gathering-Innistrad-Commander-Bloodline/dp/B099YJBTNF/'
+AMAZON_PRODUCT_URL = 'https://www.amazon.com/Magic-Gathering-Innistrad-Commander-Bloodline/dp/B099YJBTNF/'
 
 header = {
     "User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0',
@@ -20,7 +20,6 @@ website = response.text
 soup = BeautifulSoup(website, 'lxml')
 
 current_price = soup.find(name='span', class_='a-offscreen').getText()[1:]
-print(EMAIL, EMAIL_PASSWORD)
 if float(current_price) <= MY_FUNDS:
     connection = smtplib.SMTP('smtp.gmail.com', port=587)
     connection.starttls()
